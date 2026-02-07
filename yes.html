@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yay 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .box {
+    background: rgba(255,255,255,0.2);
+    padding: 22px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    max-width: 340px;
+    width: 90%;
+  }
+
+  /* IMAGE POP ANIMATION */
+  img {
+    width: 200px;
+    max-width: 100%;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    opacity: 0;
+    transform: scale(0.6);
+    animation: popIn 1.5s ease forwards;
+  }
+
+  @keyframes popIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  h1 {
+    color: white;
+    font-size: 24px;
+    line-height: 1.4;
+    min-height: 140px; /* prevents jumping while typing */
+  }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <!-- CHANGE IMAGE NAME IF NEEDED -->
+  <img src="love2.jpg" alt="Love Image">
+
+  <h1 id="text"></h1>
+</div>
+
+<script>
+const message = `
+Yay!!! 🥰💘
+Bngrm ummah 😘
+I Love You ❤️
+Na Pranam Unnantha Varaku
+Ninnu Premistune Untanu 💖
+`;
+
+const words = message.split(" ");
+let i = 0;
+const speed = 180; // typing speed
+
+function typeText() {
+  if (i < words.length) {
+    document.getElementById("text").innerHTML += words[i] + " ";
+    i++;
+    setTimeout(typeText, speed);
+  }
+}
+
+typeText();
+</script>
+
+</body>
+</html>

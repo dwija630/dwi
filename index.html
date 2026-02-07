@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    font-family: Arial, sans-serif;
+  }
+
+  .card {
+    background: white;
+    padding: 22px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  img {
+    width: 220px;
+    max-width: 100%;
+    border-radius: 14px;
+  }
+
+  .buttons {
+    margin-top: 22px;
+    height: 100px;
+    position: relative;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 15px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: absolute;
+    transition: transform 0.25s ease;
+    white-space: nowrap;
+  }
+
+  #yes {
+    left: 20px;
+    background: #ff4d6d;
+    color: white;
+  }
+
+  #no {
+    right: 20px;
+    background: #e0e0e0;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>My heart already chose you 💕<br>Will you be my Valentine?</h1>
+
+  <!-- LOCAL IMAGE -->
+  <img src="love.jpg" alt="Love Image">
+
+  <div class="buttons">
+    <button id="yes" onclick="yesClick()">Yes 💖</button>
+    <button id="no" onmouseenter="moveNo()" ontouchstart="moveNo()">No</button>
+  </div>
+</div>
+
+<script>
+<script>
+const phrases = [
+  "No",
+  "Are you sure? 😒",
+  "Really sure? 😢",
+  "Think again! 🤨",
+  "Last chance! 😐",
+  "Surely not? 😏",
+  "You might regret this! 😛",
+  "Give it another thought! 😝",
+  "Are you absolutely sure? 😏",
+  "This could be a mistake! 😭",
+  "Have a heart! 💙",
+  "Don't be so cold! 🩹",
+  "Change of heart? 💕",
+  "Wouldn't you reconsider? 😛",
+  "Is that your final answer? 🙄",
+  "You don’t have other option — say only YES 🤣"
+];
+
+let index = 0;
+
+function moveNo() {
+  const noBtn = document.getElementById("no");
+  const card = document.querySelector(".card");
+
+  // change text (ALL phrases will show)
+  noBtn.innerText = phrases[index];
+  index++;
+  if (index >= phrases.length) index = phrases.length - 1; // stop at last message
+
+  // get card size
+  const cardRect = card.getBoundingClientRect();
+
+  // wider jump range
+  const maxX = cardRect.width / 2 - 80;
+  const maxY = cardRect.height / 2 - 120;
+
+  const x = Math.random() * maxX * 2 - maxX;
+  const y = Math.random() * maxY * 2 - maxY;
+
+  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function yesClick() {
+  window.location.href = "yes.html";
+}
+</script>
+
+</script>
+
+</body>
+</html>
