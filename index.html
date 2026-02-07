@@ -6,65 +6,65 @@
 <title>Valentine 💖</title>
 
 <style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    font-family: Arial, sans-serif;
-  }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: Arial, sans-serif;
+}
 
-  .card {
-    background: white;
-    padding: 18px;
-    border-radius: 18px;
-    width: 88%;
-    max-width: 320px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    position: relative;
-  }
+.card {
+  background: white;
+  padding: 22px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
 
-  h1 {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
+h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
 
-  img {
-    width: 180px;
-    border-radius: 12px;
-  }
+img {
+  width: 220px;
+  max-width: 100%;
+  border-radius: 14px;
+}
 
-  .buttons {
-    margin-top: 16px;
-    height: 90px;
-    position: relative;
-  }
+.buttons {
+  margin-top: 25px;
+  height: 140px;
+  position: relative;
+}
 
-  button {
-    padding: 10px 18px;
-    font-size: 14px;
-    border: none;
-    border-radius: 24px;
-    cursor: pointer;
-    position: absolute;
-    white-space: nowrap;
-  }
+button {
+  padding: 12px 22px;
+  font-size: 15px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  position: absolute;
+  white-space: nowrap;
+}
 
-  #yes {
-    left: 20px;
-    background: #ff4d6d;
-    color: white;
-    z-index: 2;
-  }
+#yes {
+  left: 10px;
+  bottom: 10px;
+  background: #ff4d6d;
+  color: white;
+}
 
-  #no {
-    right: 20px;
-    background: #e0e0e0;
-    z-index: 2;
-  }
+#no {
+  right: 10px;
+  bottom: 10px;
+  background: #e0e0e0;
+}
 </style>
 </head>
 
@@ -76,12 +76,11 @@
   <img src="love.jpg" alt="Love">
 
   <div class="buttons">
-    <button id="yes">Yes 💖</button>
-    <button id="no">No</button>
+    <button id="yes" onclick="yesClick()">Yes 💖</button>
+    <button id="no" onclick="moveNo()">No</button>
   </div>
 </div>
 
-<script>
 <script>
 const phrases = [
   "No",
@@ -92,41 +91,29 @@ const phrases = [
   "Surely not? 😏",
   "You might regret this! 😛",
   "Give it another thought! 😝",
-  "Are you absolutely sure? 😏",
+  "Are you absolutely sure? 😳",
   "This could be a mistake! 😭",
   "Have a heart! 💙",
   "Don't be so cold! 🩹",
   "Change of heart? 💕",
-  "Wouldn't you reconsider? 😛",
-  "Is that your final answer? 🙄",
-  "You don’t have other option — say only YES 🤣"
+  "Wouldn't you reconsider? 🙏",
+  "You don’t have another option 😆"
 ];
 
-let index = 0;
+let i = 0;
 
 function moveNo() {
-  const noBtn = document.getElementById("no");
-  const card = document.querySelector(".card");
+  const no = document.getElementById("no");
 
-  // show phrase
-  noBtn.innerText = phrases[index];
+  // show ALL phrases one by one
+  no.innerText = phrases[i];
+  i = (i + 1) % phrases.length;
 
-  // move to next phrase (stop at last)
-  if (index < phrases.length - 1) {
-    index++;
-  }
+  // keep movement INSIDE visible area
+  const x = Math.random() * 120 - 60;
+  const y = Math.random() * 60 - 30;
 
-  // get card size
-  const cardRect = card.getBoundingClientRect();
-
-  // BIGGER jump area
-  const maxX = cardRect.width - noBtn.offsetWidth - 20;
-  const maxY = cardRect.height - noBtn.offsetHeight - 20;
-
-  const x = Math.random() * maxX - maxX / 2;
-  const y = Math.random() * maxY - maxY / 2;
-
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  no.style.transform = `translate(${x}px, ${y}px)`;
 }
 
 function yesClick() {
@@ -134,8 +121,5 @@ function yesClick() {
 }
 </script>
 
-</script>
-
 </body>
 </html>
-
